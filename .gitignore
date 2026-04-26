@@ -1,0 +1,18 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Environment and logs
+.env
+logs/
+*.log
+
+# Node / Cypress
+node_modules/
+cypress/screenshots/
+cypress/videos/
+
+# Local accidental copies
+[{]app/
