@@ -1,53 +1,24 @@
-# Working on Cloud, AWS and DevOps with Dairy Farm Shop Management System
+# Dairy Farm Shop Management System
 
-This project is a final-year B.Tech mini project that combines a Dairy Farm Shop Management System with a simple AWS cloud deployment workflow. The application is intentionally lightweight, so the main focus can be explained clearly: development, version control, cloud hosting, and deployment on an AWS EC2 instance.
+This project is a Dairy Farm Shop Management System built with HTML, CSS, and JavaScript. The application focuses on dairy shop operations such as product listing, inventory status, customer order creation, billing, and order history.
 
-## Project Overview
+AWS and DevOps are used separately for deployment and CI/CD explanation. The application remains a normal Dairy Farm Shop Management System, and AWS is only the hosting platform.
 
-The Dairy Farm Shop Management System is a static web application built with HTML, CSS, and JavaScript. It manages dairy product information, inventory status, customer orders, billing, and local order history. The project can be hosted on AWS EC2 using Nginx, making it suitable for demonstrating basic cloud and DevOps concepts.
-
-## Main Objectives
-
-- Build a dairy shop management web application
-- Track products, prices, stock, and low-stock status
-- Create customer orders and calculate bills dynamically
-- Store order history in browser `localStorage`
-- Deploy the project on an AWS EC2 instance
-- Explain a simple DevOps workflow using Git, EC2, Nginx, and manual deployment
-
-## Project Modules
+## Application Modules
 
 - Product catalog with price, unit, stock, and availability status
 - Inventory table with low-stock alert logic
 - Customer order form with name, phone, and address validation
 - Dynamic bill calculation with subtotal, delivery charge, and grand total
 - Order history saved in browser `localStorage`
-- AWS and DevOps workflow section
 - Responsive design for desktop and mobile screens
 
-## Technology Used
+## Technology Used in Application
 
-- HTML5 for page structure
-- CSS3 for responsive layout and styling
-- JavaScript for product data, validation, billing, and order storage
-- Git and GitHub for version control
-- AWS EC2 for cloud hosting
-- Nginx web server for deployment
-
-## System Architecture
-
-```text
-User Browser
-     |
-     v
-AWS EC2 Public IP
-     |
-     v
-Nginx Web Server
-     |
-     v
-Dairy Farm Website Files
-```
+- HTML5 for structure
+- CSS3 for styling and responsive layout
+- JavaScript for product data, validation, billing, and order history
+- Browser `localStorage` for storing orders without a backend
 
 ## File Structure
 
@@ -65,22 +36,34 @@ Open `index.html` directly in any browser.
 
 No database, Docker, Node.js, or package installation is required.
 
-## AWS EC2 Deployment Steps
+## AWS Deployment
 
-Launch an Ubuntu EC2 instance and allow these inbound rules in the security group:
+AWS is used only to deploy and host the Dairy Farm Shop Management System.
+
+Deployment platform:
 
 ```text
-SSH  - Port 22 - Your IP
-HTTP - Port 80 - Anywhere
+AWS EC2 Ubuntu Instance
+Nginx Web Server
+HTTP Port 80
 ```
 
-Connect to EC2:
+Deployment architecture:
 
-```bash
-ssh -i your-key.pem ubuntu@YOUR_EC2_PUBLIC_IP
+```text
+User Browser
+     |
+     v
+AWS EC2 Public IP
+     |
+     v
+Nginx Web Server
+     |
+     v
+Dairy Farm Shop Management System Files
 ```
 
-Install and start Nginx:
+Basic EC2 deployment steps:
 
 ```bash
 sudo apt update
@@ -89,46 +72,59 @@ sudo systemctl start nginx
 sudo systemctl enable nginx
 ```
 
-Upload the project files to the server using SCP:
+Upload files from local system to EC2:
 
 ```bash
 scp -i your-key.pem index.html style.css script.js ubuntu@YOUR_EC2_PUBLIC_IP:/home/ubuntu/
 ```
 
-Move files to the Nginx web directory:
+Move files to Nginx root directory:
 
 ```bash
 sudo cp index.html style.css script.js /var/www/html/
 sudo systemctl restart nginx
 ```
 
-Open the deployed project:
+Open the project:
 
 ```text
 http://YOUR_EC2_PUBLIC_IP
 ```
 
-## Simple DevOps Workflow
+## CI/CD Pipeline Explanation
+
+The CI/CD pipeline is separate from the application. It explains how updates can move from development to deployment.
 
 ```text
-Code Project
-     |
-     v
-Test in Browser
-     |
-     v
-Push to GitHub
-     |
-     v
-Deploy to AWS EC2
-     |
-     v
-Serve Website with Nginx
+Developer writes code
+        |
+        v
+Push code to GitHub
+        |
+        v
+CI stage checks project files
+        |
+        v
+CD stage connects to AWS EC2
+        |
+        v
+Updated files are copied to /var/www/html/
+        |
+        v
+Nginx serves the latest website
 ```
 
-## Explanation for Viva
+## DevOps Tools Used for Explanation
 
-This project shows how a dairy farm shop can manage products, inventory, and customer orders using a web application. The cloud part is demonstrated by deploying the project on an AWS EC2 instance. The DevOps part is shown through version control with Git/GitHub and a deployment workflow where the latest project files are hosted through Nginx.
+- Git for version control
+- GitHub for source code repository
+- GitHub Actions or Jenkins for CI/CD pipeline demonstration
+- AWS EC2 for cloud hosting
+- Nginx for serving the website
+
+## Viva Explanation
+
+The main project is a Dairy Farm Shop Management System. It manages products, inventory, customer orders, billing, and order history. AWS is used separately to deploy the project on an EC2 instance. DevOps is explained through a CI/CD pipeline where code is pushed to GitHub, checked, and then deployed to the EC2 server.
 
 ## Future Scope
 
@@ -136,5 +132,5 @@ This project shows how a dairy farm shop can manage products, inventory, and cus
 - Store products and orders in MySQL or MongoDB
 - Add admin login
 - Generate printable invoice
-- Automate deployment using GitHub Actions or Jenkins
-- Add monitoring using AWS CloudWatch
+- Automate EC2 deployment using GitHub Actions or Jenkins
+- Add AWS CloudWatch monitoring

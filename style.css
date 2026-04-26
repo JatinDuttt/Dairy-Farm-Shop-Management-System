@@ -218,9 +218,7 @@ textarea {
 .order-card,
 .bill-card,
 .table-wrapper,
-.order-item,
-.cloud-card,
-.architecture-box {
+.order-item {
     background: var(--white);
     border: 1px solid var(--line);
     border-radius: 8px;
@@ -270,59 +268,6 @@ textarea {
 
 .split-section {
     background: #eef6ef;
-}
-
-.cloud-section {
-    background: var(--white);
-}
-
-.cloud-grid {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-}
-
-.cloud-card {
-    padding: 24px;
-}
-
-.cloud-card span {
-    align-items: center;
-    background: var(--green);
-    border-radius: 50%;
-    color: var(--white);
-    display: inline-flex;
-    font-weight: 900;
-    height: 42px;
-    justify-content: center;
-    margin-bottom: 16px;
-    width: 42px;
-}
-
-.cloud-card h3 {
-    color: var(--green-dark);
-    margin-bottom: 8px;
-}
-
-.cloud-card p {
-    color: var(--muted);
-}
-
-.architecture-box {
-    background: #fbfaf6;
-    margin-top: 24px;
-    padding: 24px;
-    text-align: center;
-}
-
-.architecture-box h3 {
-    color: var(--green-dark);
-    margin-bottom: 8px;
-}
-
-.architecture-box p {
-    color: var(--muted);
-    font-weight: 800;
 }
 
 .table-wrapper {
