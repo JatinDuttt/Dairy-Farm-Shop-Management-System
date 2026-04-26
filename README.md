@@ -26,6 +26,7 @@ A PHP and MySQL web application for managing a small dairy shop. It supports adm
 | Database | MySQL |
 | Frontend | HTML, CSS, vanilla JavaScript |
 | Web server | Apache / XAMPP |
+| Containers | Docker |
 | Testing | Cypress |
 | CI/CD | Jenkins |
 
@@ -110,7 +111,120 @@ The tests expect the app at:
 http://localhost/dfsms
 ```
 
-## Deployment
+## Docker Local Setup
+
+Run the full app with PHP-Apache and MySQL containers:
+
+```bash
+docker compose up -d --build
+```
+
+Open:
+
+```text
+http://localhost:8080/dfsms/
+```
+
+Stop containers:
+
+```bash
+docker compose down
+```
+
+Remove the database volume and start fresh:
+
+```bash
+docker compose down -v
+docker compose up -d --build
+```
+
+## Docker Image CI/CD
+
+This repo includes:
+
+- `Dockerfile`
+- `docker-compose.yml`
+- `docker-compose.prod.yml`
+- `.github/workflows/docker-image.yml`
+- `Jenkinsfile.docker`
+- `Jenkinsfile.docker-linux`
+
+For GitHub Actions Docker Hub publishing, add these GitHub repository secrets:
+
+```text
+DOCKERHUB_USERNAME
+DOCKERHUB_TOKEN
+```
+
+On every push to `main`, GitHub Actions builds and pushes:
+
+```text
+DOCKERHUB_USERNAME/dairy-farm-shop:latest
+```
+
+For Jenkins Docker publishing, create a Jenkins credential:
+
+```text
+ID: dockerhub-creds
+Type: Username with password
+Username: Docker Hub username
+Password: Docker Hub access token
+```
+
+Then use:
+
+```text
+Jenkinsfile.docker       # Windows Jenkins
+Jenkinsfile.docker-linux # Ubuntu/Linux Jenkins
+```
+
+## EC2 Docker Deployment
+
+Recommended Docker EC2 option: Ubuntu Server.
+
+1. Launch an EC2 instance.
+2. Open inbound security group ports:
+   - `22` SSH from your IP
+   - `80` HTTP from anywhere
+3. SSH into EC2.
+4. Install Docker and Docker Compose plugin.
+5. Clone this repo.
+6. Create `.env.docker` from `.env.docker.example`.
+7. Pull and start containers.
+
+Example EC2 commands:
+
+```bash
+sudo apt update
+sudo apt install -y docker.io docker-compose-plugin git
+sudo usermod -aG docker ubuntu
+newgrp docker
+
+git clone https://github.com/JatinDuttt/Dairy-Farm-Shop-Management-System.git
+cd Dairy-Farm-Shop-Management-System
+
+cp .env.docker.example .env.docker
+nano .env.docker
+
+docker compose --env-file .env.docker -f docker-compose.prod.yml pull
+docker compose --env-file .env.docker -f docker-compose.prod.yml up -d
+```
+
+Open:
+
+```text
+http://EC2_PUBLIC_IP/dfsms/
+```
+
+To deploy a new image after CI pushes it:
+
+```bash
+cd Dairy-Farm-Shop-Management-System
+docker compose --env-file .env.docker -f docker-compose.prod.yml pull
+docker compose --env-file .env.docker -f docker-compose.prod.yml up -d
+```
+
+## XAMPP Deployment
 
 For a simple Windows EC2 deployment:
 

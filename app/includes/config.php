@@ -23,7 +23,7 @@ if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
 }
 session_start();
 
-$logs_dir = __DIR__ . '/../../logs';
+$logs_dir = __DIR__ . '/../logs';
 if (!is_dir($logs_dir)) {
     mkdir($logs_dir, 0755, true);
 }

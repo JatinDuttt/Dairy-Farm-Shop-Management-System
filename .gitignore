@@ -6,6 +6,7 @@ Thumbs.db
 
 # Environment and logs
 .env
+.env.docker
 logs/
 *.log
 
