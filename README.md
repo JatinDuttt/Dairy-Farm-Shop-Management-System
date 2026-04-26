@@ -159,7 +159,7 @@ DOCKERHUB_TOKEN
 On every push to `main`, GitHub Actions builds and pushes:
 
 ```text
-DOCKERHUB_USERNAME/dairy-farm-shop:latest
+jatindutt/dairy-farm-shop:latest
 ```
 
 For Jenkins Docker publishing, create a Jenkins credential:

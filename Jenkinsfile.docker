@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'your-dockerhub-username/dairy-farm-shop:latest'
+        DOCKER_IMAGE = 'jatindutt/dairy-farm-shop:latest'
     }
 
     stages {
