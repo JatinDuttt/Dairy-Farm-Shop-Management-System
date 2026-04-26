@@ -2,10 +2,8 @@
 // Run: npx cypress open  (then select this spec)
 // Or: npx cypress run --browser chrome --spec cypress/e2e/dfsms.spec.cy.js
 
-const BASE = 'http://localhost/dfsms';
-
 function login() {
-  cy.visit(BASE + '/index.php');
+  cy.visit('/index.php');
   cy.get('#username').type('admin');
   cy.get('#password').type('admin123');
   cy.get('#login-btn').click();
@@ -13,7 +11,7 @@ function login() {
 
 describe('DFSMS - Login & Authentication', () => {
   beforeEach(() => {
-    cy.visit(BASE + '/index.php');
+    cy.visit('/index.php');
   });
 
   it('shows the login page with correct title', () => {
@@ -40,7 +38,7 @@ describe('DFSMS - Customer Authentication', () => {
   const email = `customer${Date.now()}@example.com`;
 
   it('registers and logs out a new customer', () => {
-    cy.visit(BASE + '/customer-register.php');
+    cy.visit('/customer-register.php');
     cy.get('input[name="full_name"]').type('Test Customer');
     cy.get('input[name="email"]').type(email);
     cy.get('input[name="mobile"]').type('9876543210');
@@ -54,7 +52,7 @@ describe('DFSMS - Customer Authentication', () => {
   });
 
   it('logs in an existing customer', () => {
-    cy.visit(BASE + '/customer-login.php');
+    cy.visit('/customer-login.php');
     cy.get('input[name="email"]').type(email);
     cy.get('input[name="password"]').type('secret123');
     cy.contains('button', 'Login').click();
@@ -63,7 +61,7 @@ describe('DFSMS - Customer Authentication', () => {
   });
 
   it('adds a product to cart and places an order', () => {
-    cy.visit(BASE + '/customer-login.php');
+    cy.visit('/customer-login.php');
     cy.get('input[name="email"]').type(email);
     cy.get('input[name="password"]').type('secret123');
     cy.contains('button', 'Login').click();
@@ -97,7 +95,7 @@ describe('DFSMS - Dashboard', () => {
 describe('DFSMS - Products', () => {
   beforeEach(() => {
     login();
-    cy.visit(BASE + '/manage-products.php');
+    cy.visit('/manage-products.php');
   });
 
   it('displays the products table', () => {
@@ -110,14 +108,14 @@ describe('DFSMS - Products', () => {
     cy.url().should('include', 'add-product.php');
     cy.get('#add-product-form').should('be.visible');
 
-    cy.visit(BASE + '/manage-products.php');
+    cy.visit('/manage-products.php');
     cy.contains('Edit').first().click();
     cy.url().should('include', 'edit-product.php');
     cy.get('#edit-product-form').should('be.visible');
   });
 
   it('fills and submits the add product form', () => {
-    cy.visit(BASE + '/add-product.php');
+    cy.visit('/add-product.php');
     cy.get('#product-name').type('Test Milk 500ml');
     cy.get('#category').select(1);
     cy.get('#company').select(1);
@@ -131,7 +129,7 @@ describe('DFSMS - Products', () => {
 describe('DFSMS - Categories', () => {
   beforeEach(() => {
     login();
-    cy.visit(BASE + '/manage-categories.php');
+    cy.visit('/manage-categories.php');
   });
 
   it('shows the categories table', () => {
@@ -149,7 +147,7 @@ describe('DFSMS - Categories', () => {
 describe('DFSMS - Invoice', () => {
   beforeEach(() => {
     login();
-    cy.visit(BASE + '/invoice.php');
+    cy.visit('/invoice.php');
   });
 
   it('shows the invoice form', () => {
@@ -171,7 +169,8 @@ describe('DFSMS - Invoice', () => {
 describe('DFSMS - Logout', () => {
   it('logs out and redirects to login', () => {
     login();
-    cy.visit(BASE + '/logout.php');
+    cy.visit('/logout.php');
     cy.url().should('include', 'index.php');
   });
 });
+
