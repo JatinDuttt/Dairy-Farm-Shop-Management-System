@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Customer Login - Dairy Farm</title>
-<link rel="stylesheet" href="css/style.css?v=2026042606">
+<link rel="stylesheet" href="css/style.css?v=2026042607">
 </head>
 <body class="customer-auth-page">
 <div class="customer-auth-layout">

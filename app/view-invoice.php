@@ -46,7 +46,7 @@ $order_success = isset($_GET['ordered']);
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Invoice #<?php echo intval($inv_no); ?> - DFSMS</title>
-<link rel="stylesheet" href="css/style.css?v=2026042606">
+<link rel="stylesheet" href="css/style.css?v=2026042607">
 </head>
 <body>
 <?php include(isset($_SESSION['admin']) ? 'includes/header.php' : 'includes/customer-header.php'); ?>

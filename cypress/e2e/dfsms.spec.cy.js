@@ -68,7 +68,7 @@ describe('DFSMS - Customer Authentication', () => {
     cy.get('input[name="password"]').type('secret123');
     cy.contains('button', 'Login').click();
     cy.contains('button', 'Add to cart').first().click();
-    cy.url().should('include', 'customer-dashboard.php');
+    cy.get('#cart-count', { timeout: 10000 }).invoke('text').should('match', /\([1-9][0-9]*\)/);
     cy.contains('Cart').click();
     cy.url().should('include', 'cart.php');
     cy.get('input[name="contact"]').type('9876543210');

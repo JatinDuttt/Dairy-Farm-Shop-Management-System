@@ -33,7 +33,7 @@ function product_image($category, $images) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Customer Shop - Dairy Farm</title>
-<link rel="stylesheet" href="css/style.css?v=2026042606">
+<link rel="stylesheet" href="css/style.css?v=2026042607">
 </head>
 <body class="customer-shop-page">
 <?php include('includes/customer-header.php'); ?>
@@ -169,7 +169,7 @@ document.addEventListener('submit', async (event) => {
     buttons.forEach((button) => button.disabled = true);
 
     try {
-        const response = await fetch(form.action, {
+        const response = await fetch(form.getAttribute('action'), {
             method: 'POST',
             body: new FormData(form),
             credentials: 'same-origin'
