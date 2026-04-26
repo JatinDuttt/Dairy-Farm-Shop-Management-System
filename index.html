@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS DevOps Dairy Farm Shop Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="#home">
+            <span>DF</span>
+            AWS Dairy Farm
+        </a>
+        <nav class="nav-links">
+            <a href="#products">Products</a>
+            <a href="#inventory">Inventory</a>
+            <a href="#cloud">AWS & DevOps</a>
+            <a href="#order">New Order</a>
+            <a href="#orders">Orders</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <p class="eyebrow">Cloud, AWS and DevOps Mini Project</p>
+                <h1>Dairy Farm Shop Management System on AWS Cloud</h1>
+                <p>
+                    A cloud-ready web application for managing dairy products, checking stock,
+                    creating customer orders, and deploying the system on an AWS EC2 instance.
+                </p>
+                <div class="hero-actions">
+                    <a class="button primary" href="#order">Create Order</a>
+                    <a class="button secondary" href="#cloud">View Cloud Plan</a>
+                </div>
+            </div>
+            <div class="summary-panel" aria-label="Project summary">
+                <div>
+                    <span id="productCount">0</span>
+                    <p>Products</p>
+                </div>
+                <div>
+                    <span id="stockValue">Rs. 0</span>
+                    <p>Stock Value</p>
+                </div>
+                <div>
+                    <span id="orderCount">0</span>
+                    <p>Orders</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="products">
+            <div class="section-heading">
+                <p class="eyebrow">Catalog</p>
+                <h2>Dairy Products</h2>
+                <span>Products are loaded from JavaScript data, which makes the code easy to extend.</span>
+            </div>
+            <div class="product-grid" id="productGrid"></div>
+        </section>
+
+        <section class="section split-section" id="inventory">
+            <div class="section-heading left">
+                <p class="eyebrow">Stock</p>
+                <h2>Inventory Overview</h2>
+                <span>This table helps explain stock tracking, pricing, and reorder alerts.</span>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Unit</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventoryTable"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section cloud-section" id="cloud">
+            <div class="section-heading">
+                <p class="eyebrow">Cloud Deployment</p>
+                <h2>AWS and DevOps Workflow</h2>
+                <span>This section connects the dairy farm application with the project topic.</span>
+            </div>
+
+            <div class="cloud-grid">
+                <article class="cloud-card">
+                    <span>01</span>
+                    <h3>Development</h3>
+                    <p>Build the Dairy Farm Shop Management System using HTML, CSS, and JavaScript.</p>
+                </article>
+                <article class="cloud-card">
+                    <span>02</span>
+                    <h3>Version Control</h3>
+                    <p>Push project files to GitHub so every change is tracked and easy to manage.</p>
+                </article>
+                <article class="cloud-card">
+                    <span>03</span>
+                    <h3>AWS EC2 Hosting</h3>
+                    <p>Launch an Ubuntu EC2 instance and host the static website using Nginx.</p>
+                </article>
+                <article class="cloud-card">
+                    <span>04</span>
+                    <h3>Deployment</h3>
+                    <p>Copy the latest files to the server path and restart Nginx to publish updates.</p>
+                </article>
+            </div>
+
+            <div class="architecture-box">
+                <h3>Simple Architecture</h3>
+                <p>User Browser -> AWS EC2 Instance -> Nginx Web Server -> Dairy Farm Website Files</p>
+            </div>
+        </section>
+
+        <section class="section order-layout" id="order">
+            <div class="order-card">
+                <div class="section-heading left">
+                    <p class="eyebrow">Booking</p>
+                    <h2>Create Customer Order</h2>
+                    <span>Enter customer details and quantity for each product.</span>
+                </div>
+
+                <form id="orderForm">
+                    <div class="form-grid">
+                        <label>
+                            Customer Name
+                            <input type="text" id="customerName" placeholder="Enter customer name" required>
+                        </label>
+                        <label>
+                            Phone Number
+                            <input type="tel" id="customerPhone" placeholder="10 digit mobile number" required>
+                        </label>
+                        <label class="full-width">
+                            Delivery Address
+                            <textarea id="customerAddress" rows="3" placeholder="Enter delivery address" required></textarea>
+                        </label>
+                    </div>
+
+                    <div class="quantity-list" id="quantityList"></div>
+
+                    <button class="button primary" type="submit">Save Order</button>
+                </form>
+            </div>
+
+            <aside class="bill-card">
+                <h2>Bill Summary</h2>
+                <div id="billItems" class="bill-items">
+                    <p class="empty-text">Select product quantities to generate bill.</p>
+                </div>
+                <div class="bill-line">
+                    <span>Subtotal</span>
+                    <strong id="subtotal">Rs. 0</strong>
+                </div>
+                <div class="bill-line">
+                    <span>Delivery Charge</span>
+                    <strong id="deliveryCharge">Rs. 0</strong>
+                </div>
+                <div class="bill-total">
+                    <span>Total</span>
+                    <strong id="grandTotal">Rs. 0</strong>
+                </div>
+            </aside>
+        </section>
+
+        <section class="section" id="orders">
+            <div class="section-heading">
+                <p class="eyebrow">Records</p>
+                <h2>Order History</h2>
+                <span>Orders are saved using localStorage, so they remain after refreshing the page.</span>
+            </div>
+            <div class="orders-toolbar">
+                <button class="button secondary" id="clearOrders" type="button">Clear Orders</button>
+            </div>
+            <div class="order-history" id="orderHistory"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Working on Cloud, AWS and DevOps with Dairy Farm Shop Management System</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
