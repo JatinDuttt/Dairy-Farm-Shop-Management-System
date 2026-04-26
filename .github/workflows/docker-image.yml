@@ -24,4 +24,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/dairy-farm-shop:latest
+          tags: jatindutt/dairy-farm-shop:latest
